@@ -1,4 +1,4 @@
-export const getPokemon = async (endpoint, method = 'GET', data = {}) => {
+export const getPokemon = async (endpoint: string, method = 'GET', data = {}) => {
     const response = await fetch(endpoint, {
         method: method,
         mode: 'cors',

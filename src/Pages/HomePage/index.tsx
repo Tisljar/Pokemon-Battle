@@ -1,12 +1,14 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
+import './index.css';
 
 const HomePage = () => {
     return (
         <div className="container">
-            <Link to="/BattlePage" className="btn">
-                New Game
-            </Link>
+            <div className="background-pokemon">
+                <Link to="/BattlePage" className="btn">
+                    <button className="btn-start">New Game</button>
+                </Link>
+            </div>
         </div>
     );
 };
