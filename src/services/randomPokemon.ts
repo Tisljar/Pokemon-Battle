@@ -9,6 +9,7 @@ const randomPokemon = async () => {
     const pokemon: IPokemon = {
         name: data.name,
         health: data.stats[0].base_stat,
+        attack: data.stats[1].base_stat,
         defense: data.stats[2].base_stat,
         speed: data.stats[5].base_stat,
     };

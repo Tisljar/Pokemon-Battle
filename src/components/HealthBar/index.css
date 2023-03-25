@@ -1,0 +1,7 @@
+.health-bar {
+    height: 20px;
+    max-width: 300px;
+    border: 4px solid;
+    border-radius: 16px;
+    margin: 0 auto;
+}

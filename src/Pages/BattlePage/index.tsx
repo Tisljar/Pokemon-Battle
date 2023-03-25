@@ -1,19 +1,24 @@
 import { useEffect, useState } from 'react';
+import Attack from '../../components/Attack';
+import Logs from '../../components/Logs';
+import Menu from '../../components/Menu';
+import Pokemon from '../../components/Pokemon';
 import randomPokemon from '../../services/randomPokemon';
 
-const BattlePage = () => {
-    const [firstPokemon, setFirstPokemon] = useState({});
-    const [secondPokemon, setSecondPokemon] = useState({});
-    useEffect(() => {
-        setPokeState();
-    }, []);
-    const setPokeState = async () => {
-        const one = await randomPokemon();
-        const two = await randomPokemon();
-        setFirstPokemon(one);
-        setSecondPokemon(two);
-    };
-    return <></>;
+const BattlePage = ({ firstPokemon, secondPokemon, setPokeState }: any) => {
+    return (
+        <div className="flex-container">
+            <div className="row">
+                <Pokemon pokemon={firstPokemon} />
+                <Attack />
+                <Pokemon pokemon={secondPokemon} />
+            </div>
+            <div className="row">
+                <Menu setPokeState={setPokeState} />
+                <Logs />
+            </div>
+        </div>
+    );
 };
 
 export default BattlePage;

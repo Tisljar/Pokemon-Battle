@@ -1,0 +1,15 @@
+.stat-box {
+    width: 100%;
+    border-radius: 16px;
+    border: 4px solid #ffcc00;
+    background-color: #fff7d6;
+    padding: 8px;
+    font-size: 14px;
+    text-align: left;
+}
+h3 {
+    text-transform: capitalize;
+}
+p {
+    margin: 0;
+}
