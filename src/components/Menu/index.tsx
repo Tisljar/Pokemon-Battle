@@ -5,7 +5,6 @@ const Menu = ({ setPokeState }: any) => {
     const navigate = useNavigate();
     const handleNewGame = () => {
         setPokeState();
-        console.log('klik');
     };
     const handleHome = () => {
         setPokeState();

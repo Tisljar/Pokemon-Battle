@@ -1,3 +1,9 @@
+.point {
+    width: 100px;
+    height: 50px;
+    margin: 0 auto;
+}
+
 .arrow {
     width: 100px;
     height: 50px;
@@ -8,7 +14,11 @@
     fill: #0073bc;
 }
 .margin-top-250 {
-    margin-top: 250px;
+    margin-top: 330px;
+}
+
+.flip {
+    transform: scaleX(-1);
 }
 
 .btn-attack {
@@ -20,4 +30,5 @@
     padding: 4px;
     width: 100%;
     margin-top: 16px;
+    cursor: pointer;
 }

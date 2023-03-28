@@ -4,4 +4,5 @@ export interface IPokemon {
     attack: number;
     defense: number;
     speed: number;
+    sprite: string;
 }

@@ -1,10 +1,32 @@
+import { useEffect } from 'react';
 import './index.css';
 
-const HealthBar = () => {
+const HealthBar = ({ pokemonCurrentHealth }: any) => {
+    const healthTitleClass =
+        pokemonCurrentHealth <= 50 && pokemonCurrentHealth > 30
+            ? 'title-orange'
+            : pokemonCurrentHealth <= 30
+            ? 'title-red'
+            : 'title-green';
+    const borderHealthClass =
+        pokemonCurrentHealth <= 50 && pokemonCurrentHealth > 30
+            ? 'health-bar orange'
+            : pokemonCurrentHealth <= 30
+            ? 'health-bar red'
+            : 'health-bar green';
+    const backgroundHealthClass =
+        pokemonCurrentHealth <= 50 && pokemonCurrentHealth > 30
+            ? 'current-health l-b-orange'
+            : pokemonCurrentHealth <= 30
+            ? 'current-health l-b-red'
+            : 'current-health l-b-green';
     return (
-        <div className="health-bar">
-            <div className="current-health"></div>
-        </div>
+        <>
+            <h3 className={healthTitleClass}>{pokemonCurrentHealth}%</h3>
+            <div className={borderHealthClass}>
+                <div className={backgroundHealthClass} style={{ width: `${pokemonCurrentHealth}%` }}></div>
+            </div>
+        </>
     );
 };
 

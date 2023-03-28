@@ -5,17 +5,26 @@ import Menu from '../../components/Menu';
 import Pokemon from '../../components/Pokemon';
 import randomPokemon from '../../services/randomPokemon';
 
-const BattlePage = ({ firstPokemon, secondPokemon, setPokeState }: any) => {
+const BattlePage = ({
+    firstPokemon,
+    secondPokemon,
+    setPokeState,
+    handlePokeAttack,
+    leftTurn,
+    logs,
+    firstPokemonCurrentHealth,
+    secondPokemonCurrentHealth,
+}: any) => {
     return (
         <div className="flex-container">
             <div className="row">
-                <Pokemon pokemon={firstPokemon} />
-                <Attack />
-                <Pokemon pokemon={secondPokemon} />
+                <Pokemon pokemon={firstPokemon} pokemonCurrentHealth={firstPokemonCurrentHealth} mirror={true} />
+                <Attack handlePokeAttack={handlePokeAttack} leftTurn={leftTurn} />
+                <Pokemon pokemon={secondPokemon} pokemonCurrentHealth={secondPokemonCurrentHealth} mirror={false} />
             </div>
             <div className="row">
                 <Menu setPokeState={setPokeState} />
-                <Logs />
+                <Logs logs={logs} />
             </div>
         </div>
     );
