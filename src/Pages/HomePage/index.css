@@ -9,7 +9,7 @@
     position: absolute;
     font-weight: bold;
     height: 60px;
-    top: 45%;
+    top: 110%;
     left: 260px;
     cursor: pointer;
 }
@@ -20,4 +20,5 @@
     height: 300px;
     width: 820px;
     position: relative;
+    margin-top: -200px;
 }

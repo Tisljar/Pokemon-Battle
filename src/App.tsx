@@ -56,11 +56,11 @@ const App = () => {
                 setLeftTurn(false);
                 return;
             }
-            let secondPokemonDefense = secondPokemon.defense;
+            let pokemonDefense = secondPokemon.defense;
             if (secondPokemon.defense > 90) {
-                secondPokemonDefense = 90;
+                pokemonDefense = 90;
             }
-            const dmgTaken = (firstPokemon.attack / 2) * (1 - secondPokemonDefense / 100);
+            const dmgTaken = (firstPokemon.attack / 2) * (1 - pokemonDefense / 100);
             const dmgOutput = Math.round(dmgTaken);
             const newLog = `${firstPokemon.name} dealt ${dmgOutput} to ${secondPokemon.name}`;
             setLogs((prevState) => [...prevState, newLog]);
@@ -68,7 +68,7 @@ const App = () => {
             const pokePercentDmg = Math.round((dmgOutput / secondPokemon.health) * 100);
             const newPokeHealth = secondPokemonCurrentHealth - pokePercentDmg;
             setSecondPokemonCurrentHealth(newPokeHealth);
-            if (firstPokemonCurrentHealth <= 0 || secondPokemonCurrentHealth <= 0) {
+            if (newPokeHealth <= 0) {
                 setGameOver(true);
             }
             return;
@@ -79,11 +79,11 @@ const App = () => {
                 setLeftTurn(true);
                 return;
             }
-            let firstPokemonDefense = secondPokemon.defense;
+            let pokemonDefense = firstPokemon.defense;
             if (firstPokemon.defense > 90) {
-                firstPokemonDefense = 90;
+                pokemonDefense = 90;
             }
-            const dmgTaken: number = (secondPokemon.attack / 2) * (1 - firstPokemonDefense / 100);
+            const dmgTaken: number = (secondPokemon.attack / 2) * (1 - pokemonDefense / 100);
             const dmgOutput = Math.round(dmgTaken);
             const newLog = `${secondPokemon.name} dealt ${dmgOutput} to ${firstPokemon.name}`;
             setLogs((prevState) => [...prevState, newLog]);
@@ -91,7 +91,7 @@ const App = () => {
             const newPokeHealth = firstPokemonCurrentHealth - pokePercentDmg;
             setFirstPokemonCurrentHealth(newPokeHealth);
             setLeftTurn(true);
-            if (firstPokemonCurrentHealth <= 0 || secondPokemonCurrentHealth <= 0) {
+            if (newPokeHealth <= 0) {
                 setGameOver(true);
             }
             return;
@@ -113,7 +113,6 @@ const App = () => {
             setSecondPokemonCurrentHealth(100);
             setIsLoad(true);
             const one = await randomPokemon();
-            setIsLoad(false);
             if (secondPokemon.speed === one.speed) {
                 setLeftTurn(coinFlip());
             } else if (secondPokemon.speed > one.speed) {
@@ -123,6 +122,7 @@ const App = () => {
             }
             setFirstPokemon(one);
             setGameOver(false);
+            setIsLoad(false);
         } else {
             setLeftTurn(true);
             setLogs([]);
@@ -130,7 +130,6 @@ const App = () => {
             setSecondPokemonCurrentHealth(100);
             setIsLoad(true);
             const two = await randomPokemon();
-            setIsLoad(false);
             if (firstPokemon.speed === two.speed) {
                 setLeftTurn(coinFlip());
             } else if (firstPokemon.speed > two.speed) {
@@ -140,6 +139,7 @@ const App = () => {
             }
             setSecondPokemon(two);
             setGameOver(false);
+            setIsLoad(false);
         }
     };
     // const handleGameEnd = () => {};
