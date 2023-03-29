@@ -30,6 +30,8 @@ const App = () => {
     const [secondPokemonCurrentHealth, setSecondPokemonCurrentHealth] = useState(100);
     const [isLoad, setIsLoad] = useState(true);
     const [gameOver, setGameOver] = useState(false);
+    const [leftAnimation, setLeftAnimation] = useState('pokemon-sprite');
+    const [rightAnimation, setRightAnimation] = useState('pokemon-sprite');
     useEffect(() => {
         setPokeState();
     }, []);
@@ -54,8 +56,12 @@ const App = () => {
                 const newLog = `${firstPokemon.name} missed`;
                 setLogs((prevState) => [...prevState, newLog]);
                 setLeftTurn(false);
+                setRightAnimation('pokemon-sprite animation-to-right');
+                setLeftAnimation('pokemon-sprite');
                 return;
             }
+            setRightAnimation('pokemon-sprite animation-to-right');
+            setLeftAnimation('pokemon-sprite');
             let pokemonDefense = secondPokemon.defense;
             if (secondPokemon.defense > 90) {
                 pokemonDefense = 90;
@@ -77,8 +83,12 @@ const App = () => {
                 const newLog = `${firstPokemon.name} missed`;
                 setLogs((prevState) => [...prevState, newLog]);
                 setLeftTurn(true);
+                setLeftAnimation('pokemon-sprite animation-to-left');
+                setRightAnimation('pokemon-sprite');
                 return;
             }
+            setLeftAnimation('pokemon-sprite animation-to-left');
+            setRightAnimation('pokemon-sprite');
             let pokemonDefense = firstPokemon.defense;
             if (firstPokemon.defense > 90) {
                 pokemonDefense = 90;
@@ -142,6 +152,10 @@ const App = () => {
             setIsLoad(false);
         }
     };
+    // const resetAnimation = (mirror: Boolean) => {
+    //     const imgCss = mirror ? 'pokemon-sprite mirror' : 'pokemon-sprite';
+    //     return imgCss;
+    // };
     // const handleGameEnd = () => {};
     return (
         <Routes>
@@ -161,6 +175,8 @@ const App = () => {
                         gameOver={gameOver}
                         firstPokemonCurrentHealth={firstPokemonCurrentHealth}
                         secondPokemonCurrentHealth={secondPokemonCurrentHealth}
+                        leftAnimation={leftAnimation}
+                        rightAnimation={rightAnimation}
                     />
                 }
             ></Route>

@@ -19,6 +19,8 @@ const BattlePage = ({
     secondPokemonCurrentHealth,
     gameOver,
     isLoad,
+    leftAnimation,
+    rightAnimation,
 }: any) => {
     return (
         <div className="flex-container">
@@ -34,9 +36,19 @@ const BattlePage = ({
                 />
             )}
             <div className="row">
-                <Pokemon pokemon={firstPokemon} pokemonCurrentHealth={firstPokemonCurrentHealth} mirror={true} />
+                <Pokemon
+                    pokemon={firstPokemon}
+                    pokemonCurrentHealth={firstPokemonCurrentHealth}
+                    animation={rightAnimation}
+                    mirror={true}
+                />
                 <Attack handlePokeAttack={handlePokeAttack} leftTurn={leftTurn} />
-                <Pokemon pokemon={secondPokemon} pokemonCurrentHealth={secondPokemonCurrentHealth} mirror={false} />
+                <Pokemon
+                    pokemon={secondPokemon}
+                    pokemonCurrentHealth={secondPokemonCurrentHealth}
+                    animation={leftAnimation}
+                    mirror={false}
+                />
             </div>
             <div className="row">
                 <Menu handleNewGame={handleNewGame} handleNewOpponent={handleNewOpponent} />

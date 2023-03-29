@@ -1,9 +1,26 @@
 .pokemon-sprite {
     width: 150px;
     height: 150px;
-    margin: 25px auto;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .mirror {
     transform: scaleX(-1);
+}
+
+.animation-to-right {
+    animation: attack-right 1s linear forwards;
+}
+
+.animation-to-left {
+    animation: attack-left 1s linear forwards;
+}
+
+.sprite-container {
+    width: 150px;
+    height: 150px;
+    margin: 25px auto;
+    position: relative;
 }

@@ -97,3 +97,49 @@ code {
     width: calc(12 / 12 * 100%);
 }
 
+@keyframes attack-right {
+    0% {
+        top: 0;
+        left: 0;
+    }
+    25% {
+        top: -25px;
+        left: 300px;
+    }
+    50% {
+        top: 0;
+        left: 600px;
+    }
+    75% {
+        top: -25px;
+        left: 300px;
+    }
+    100% {
+        top: 0;
+        left: 0;
+    }
+}
+
+@keyframes attack-left {
+    0% {
+        top: 0;
+        left: 0;
+    }
+    25% {
+        top: -25px;
+        left: -300px;
+    }
+    50% {
+        top: 0;
+        left: -600px;
+    }
+    75% {
+        top: -25px;
+        left: -150px;
+    }
+    100% {
+        top: 0;
+        left: 0;
+    }
+}
+

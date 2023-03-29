@@ -1,10 +1,18 @@
+import { useEffect } from 'react';
 import './index.css';
 
-const Sprite = ({ sprite, mirror }: any) => {
-    const imgCss = mirror ? 'pokemon-sprite mirror' : 'pokemon-sprite';
+const Sprite = ({ sprite, mirror, animation }: any) => {
+    useEffect(() => {
+        let imgCss = animation;
+        if (mirror) {
+            imgCss = imgCss + 'mirror';
+        }
+    });
     return (
         <>
-            <img src={sprite} alt="" className={imgCss} />
+            <div className="sprite-container">
+                <img src={sprite} alt="" className={animation} />
+            </div>
         </>
     );
 };
