@@ -34,6 +34,8 @@ const App = () => {
     const [rightAnimation, setRightAnimation] = useState('pokemon-sprite');
     useEffect(() => {
         setPokeState();
+        setLeftAnimation('pokemon-sprite');
+        setRightAnimation('pokemon-sprite');
     }, []);
     const setPokeState = async () => {
         setIsLoad(true);
@@ -80,7 +82,7 @@ const App = () => {
             return;
         } else {
             if (handleMissChance()) {
-                const newLog = `${firstPokemon.name} missed`;
+                const newLog = `${secondPokemon.name} missed`;
                 setLogs((prevState) => [...prevState, newLog]);
                 setLeftTurn(true);
                 setLeftAnimation('pokemon-sprite animation-to-left');
@@ -113,6 +115,8 @@ const App = () => {
         setFirstPokemonCurrentHealth(100);
         setSecondPokemonCurrentHealth(100);
         setPokeState();
+        setLeftAnimation('pokemon-sprite');
+        setRightAnimation('pokemon-sprite');
         setGameOver(false);
     };
     const handleNewOpponent = async (winner: IPokemon) => {
@@ -121,6 +125,8 @@ const App = () => {
             setLogs([]);
             setFirstPokemonCurrentHealth(100);
             setSecondPokemonCurrentHealth(100);
+            setLeftAnimation('pokemon-sprite');
+            setRightAnimation('pokemon-sprite');
             setIsLoad(true);
             const one = await randomPokemon();
             if (secondPokemon.speed === one.speed) {
@@ -138,6 +144,8 @@ const App = () => {
             setLogs([]);
             setFirstPokemonCurrentHealth(100);
             setSecondPokemonCurrentHealth(100);
+            setLeftAnimation('pokemon-sprite');
+            setRightAnimation('pokemon-sprite');
             setIsLoad(true);
             const two = await randomPokemon();
             if (firstPokemon.speed === two.speed) {
@@ -152,11 +160,6 @@ const App = () => {
             setIsLoad(false);
         }
     };
-    // const resetAnimation = (mirror: Boolean) => {
-    //     const imgCss = mirror ? 'pokemon-sprite mirror' : 'pokemon-sprite';
-    //     return imgCss;
-    // };
-    // const handleGameEnd = () => {};
     return (
         <Routes>
             <Route path="/" element={<HomePage />}></Route>
