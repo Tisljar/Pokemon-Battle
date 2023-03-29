@@ -1,8 +1,21 @@
 import { useNavigate } from 'react-router-dom';
 import './index.css';
 
-const Menu = ({ handleNewGame, handleNewOpponent }: any) => {
+const GameEnd = ({
+    handleNewGame,
+    handleNewOpponent,
+    firstPokemon,
+    firstPokemonCurrentHealth,
+    secondPokemon,
+    secondPokemonCurrentHealth,
+}: any) => {
     const navigate = useNavigate();
+    let winner = '';
+    if (firstPokemonCurrentHealth <= 0) {
+        winner = secondPokemon;
+    } else if (secondPokemonCurrentHealth <= 0) {
+        winner = firstPokemon;
+    }
     const newGame = () => {
         handleNewGame();
     };
@@ -11,12 +24,11 @@ const Menu = ({ handleNewGame, handleNewOpponent }: any) => {
         navigate('/');
     };
     const newOpponent = () => {
-        const winner = 'no-one';
         handleNewOpponent(winner);
     };
     return (
-        <div className="col-4">
-            <div className="menu-box">
+        <div className="loader-container">
+            <div className="end-box">
                 <button className="btn-menu" onClick={handleHome}>
                     Home
                 </button>
@@ -31,4 +43,4 @@ const Menu = ({ handleNewGame, handleNewOpponent }: any) => {
     );
 };
 
-export default Menu;
+export default GameEnd;

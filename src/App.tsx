@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import randomPokemon from './services/randomPokemon';
 import coinFlip from './services/coinFlip';
 import handleMissChance from './services/handleMissChance';
+import { IPokemon } from './helpers/interfaces/IPokemon';
 
 const App = () => {
     const [firstPokemon, setFirstPokemon] = useState({
@@ -27,12 +28,16 @@ const App = () => {
     const [logs, setLogs] = useState<string[]>([]);
     const [firstPokemonCurrentHealth, setFirstPokemonCurrentHealth] = useState(100);
     const [secondPokemonCurrentHealth, setSecondPokemonCurrentHealth] = useState(100);
+    const [isLoad, setIsLoad] = useState(true);
+    const [gameOver, setGameOver] = useState(false);
     useEffect(() => {
         setPokeState();
     }, []);
     const setPokeState = async () => {
+        setIsLoad(true);
         const one = await randomPokemon();
         const two = await randomPokemon();
+        setIsLoad(false);
         if (one.speed === two.speed) {
             setLeftTurn(coinFlip());
         } else if (one.speed > two.speed) {
@@ -63,6 +68,9 @@ const App = () => {
             const pokePercentDmg = Math.round((dmgOutput / secondPokemon.health) * 100);
             const newPokeHealth = secondPokemonCurrentHealth - pokePercentDmg;
             setSecondPokemonCurrentHealth(newPokeHealth);
+            if (firstPokemonCurrentHealth <= 0 || secondPokemonCurrentHealth <= 0) {
+                setGameOver(true);
+            }
             return;
         } else {
             if (handleMissChance()) {
@@ -83,10 +91,58 @@ const App = () => {
             const newPokeHealth = firstPokemonCurrentHealth - pokePercentDmg;
             setFirstPokemonCurrentHealth(newPokeHealth);
             setLeftTurn(true);
+            if (firstPokemonCurrentHealth <= 0 || secondPokemonCurrentHealth <= 0) {
+                setGameOver(true);
+            }
             return;
         }
     };
-    const handleGameEnd = () => {};
+    const handleNewGame = () => {
+        setLeftTurn(true);
+        setLogs([]);
+        setFirstPokemonCurrentHealth(100);
+        setSecondPokemonCurrentHealth(100);
+        setPokeState();
+        setGameOver(false);
+    };
+    const handleNewOpponent = async (winner: IPokemon) => {
+        if (winner.name === secondPokemon.name) {
+            setLeftTurn(true);
+            setLogs([]);
+            setFirstPokemonCurrentHealth(100);
+            setSecondPokemonCurrentHealth(100);
+            setIsLoad(true);
+            const one = await randomPokemon();
+            setIsLoad(false);
+            if (secondPokemon.speed === one.speed) {
+                setLeftTurn(coinFlip());
+            } else if (secondPokemon.speed > one.speed) {
+                setLeftTurn(false);
+            } else {
+                setLeftTurn(true);
+            }
+            setFirstPokemon(one);
+            setGameOver(false);
+        } else {
+            setLeftTurn(true);
+            setLogs([]);
+            setFirstPokemonCurrentHealth(100);
+            setSecondPokemonCurrentHealth(100);
+            setIsLoad(true);
+            const two = await randomPokemon();
+            setIsLoad(false);
+            if (firstPokemon.speed === two.speed) {
+                setLeftTurn(coinFlip());
+            } else if (firstPokemon.speed > two.speed) {
+                setLeftTurn(true);
+            } else {
+                setLeftTurn(false);
+            }
+            setSecondPokemon(two);
+            setGameOver(false);
+        }
+    };
+    // const handleGameEnd = () => {};
     return (
         <Routes>
             <Route path="/" element={<HomePage />}></Route>
@@ -94,12 +150,15 @@ const App = () => {
                 path="/BattlePage"
                 element={
                     <BattlePage
+                        isLoad={isLoad}
                         firstPokemon={firstPokemon}
                         secondPokemon={secondPokemon}
-                        setPokeState={setPokeState}
+                        handleNewGame={handleNewGame}
                         handlePokeAttack={handlePokeAttack}
+                        handleNewOpponent={handleNewOpponent}
                         leftTurn={leftTurn}
                         logs={logs}
+                        gameOver={gameOver}
                         firstPokemonCurrentHealth={firstPokemonCurrentHealth}
                         secondPokemonCurrentHealth={secondPokemonCurrentHealth}
                     />
