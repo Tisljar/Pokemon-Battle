@@ -16,6 +16,26 @@
     border-radius: 16px;
     color: white;
     font-size: 18px;
-    padding: 4px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 4px;
+    padding-right: 4px;
     cursor: pointer;
+}
+
+.menu-responsive {
+
+}
+
+@media (max-width: 768px) {
+    .menu-responsive {
+        width: 50%;
+    }
+    .btn-menu {
+        font-size: 14px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        padding-left: 2px;
+        padding-right: 2px;
+    }
 }

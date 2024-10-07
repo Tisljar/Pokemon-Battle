@@ -1,12 +1,12 @@
 .point {
-    width: 100px;
-    height: 50px;
+    width: 44px;
+    height: 38px;
     margin: 0 auto;
 }
 
 .arrow {
-    width: 100px;
-    height: 50px;
+    width: 44px;
+    height: 38px;
     margin: 0 auto;
 }
 
@@ -31,4 +31,11 @@
     width: 100%;
     margin-top: 16px;
     cursor: pointer;
+    max-width: 250px;
 }
+@media (max-width: 768px) {
+    .margin-top-250{
+        margin-top: 0px;
+        margin-bottom: 32px;
+    }
+  }

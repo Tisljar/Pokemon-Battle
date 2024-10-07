@@ -49,6 +49,10 @@ code {
     padding-right: 15px;
 }
 
+.mb-50{
+    margin-bottom: 32px;
+}
+
 .col-1 {
     width: calc(1 / 12 * 100%);
 }
@@ -97,6 +101,33 @@ code {
     width: calc(12 / 12 * 100%);
 }
 
+.battle-button{
+   text-align: center;
+}
+
+@media (max-width: 768px) {
+    .battle-container {
+      justify-content: space-between; /* Keep first and third item in row */
+    }
+  
+    .pokemon-1, .pokemon-3 {
+      flex: 1 1 45%; /* 1st and 3rd items take about half the width */
+    }
+  
+    .battle-button {
+      order: 3; /* Push the 2nd item to the last position */
+      flex: 1 1 100%; /* Make the 2nd item take full width in the new row */
+    }
+    .margin-top-250{
+        margin-top: 0px;
+    }
+  }
+
+  :root {
+    --move-distance-1: 300px;
+    --move-distance-2: 600px;
+}
+
 @keyframes attack-right {
     0% {
         top: 0;
@@ -104,15 +135,15 @@ code {
     }
     25% {
         top: -25px;
-        left: 300px;
+        left: var(--move-distance-1);
     }
     50% {
         top: 0;
-        left: 600px;
+        left: var(--move-distance-2);
     }
     75% {
         top: -25px;
-        left: 300px;
+        left: var(--move-distance-1);
     }
     100% {
         top: 0;
@@ -120,6 +151,7 @@ code {
     }
 }
 
+/* Keyframes for attack-left */
 @keyframes attack-left {
     0% {
         top: 0;
@@ -127,19 +159,41 @@ code {
     }
     25% {
         top: -25px;
-        left: -300px;
+        left: calc(var(--move-distance-1) * -1);
     }
     50% {
         top: 0;
-        left: -600px;
+        left: calc(var(--move-distance-2) * -1);
     }
     75% {
         top: -25px;
-        left: -150px;
+        left: calc(var(--move-distance-1) * -1);
     }
     100% {
         top: 0;
         left: 0;
+    }
+}
+
+@media (max-width: 992px){
+    :root {
+        --move-distance-1: 250px;
+        --move-distance-2: 500px;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --move-distance-1: 125px;
+        --move-distance-2: 250px;
+    }
+}
+
+/* For mobile (480px and below) */
+@media (max-width: 480px) {
+    :root {
+        --move-distance-1: 75px;
+        --move-distance-2: 150px;
     }
 }
 

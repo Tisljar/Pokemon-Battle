@@ -15,7 +15,7 @@ const Menu = ({ handleNewGame, handleNewOpponent }: any) => {
         handleNewOpponent(winner);
     };
     return (
-        <div className="col-4">
+        <div className="col-4 menu-responsive">
             <div className="menu-box">
                 <button className="btn-menu" onClick={handleHome}>
                     Home

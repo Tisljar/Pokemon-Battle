@@ -11,11 +11,9 @@ const Pokemon = (props: any) => {
     const { animation } = props;
     return (
         <>
-            <div className="col-4 pokemon-content">
-                <HealthBar pokemonCurrentHealth={pokemonCurrentHealth} />
-                <Sprite sprite={pokemon.sprite} mirror={mirror} animation={animation} />
-                <Stats pokemon={pokemon} />
-            </div>
+            <HealthBar pokemonCurrentHealth={pokemonCurrentHealth} />
+            <Sprite sprite={pokemon.sprite} mirror={mirror} animation={animation} />
+            <Stats pokemon={pokemon} />
         </>
     );
 };

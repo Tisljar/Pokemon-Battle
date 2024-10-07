@@ -3,3 +3,12 @@
     margin-bottom: 48px;
     margin-top: 24px;
 }
+
+@media (max-width: 768px) {
+    .pokemon-content{
+        width: 50%;
+        margin-bottom: 16px;
+    }
+  }
+
+

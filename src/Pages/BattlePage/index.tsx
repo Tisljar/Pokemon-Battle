@@ -35,22 +35,26 @@ const BattlePage = ({
                     secondPokemonCurrentHealth={secondPokemonCurrentHealth}
                 />
             )}
-            <div className="row">
-                <Pokemon
-                    pokemon={firstPokemon}
-                    pokemonCurrentHealth={firstPokemonCurrentHealth}
-                    animation={rightAnimation}
-                    mirror={true}
-                />
+            <div className="row battle-container">
+                <div className="col-4 pokemon-content">
+                    <Pokemon
+                        pokemon={firstPokemon}
+                        pokemonCurrentHealth={firstPokemonCurrentHealth}
+                        animation={rightAnimation}
+                        mirror={true}
+                    />
+                </div>
                 <Attack handlePokeAttack={handlePokeAttack} leftTurn={leftTurn} />
-                <Pokemon
-                    pokemon={secondPokemon}
-                    pokemonCurrentHealth={secondPokemonCurrentHealth}
-                    animation={leftAnimation}
-                    mirror={false}
-                />
+                <div className="col-4 pokemon-content">
+                    <Pokemon
+                        pokemon={secondPokemon}
+                        pokemonCurrentHealth={secondPokemonCurrentHealth}
+                        animation={leftAnimation}
+                        mirror={false}
+                    />
+                </div>
             </div>
-            <div className="row">
+            <div className="row mb-50">
                 <Menu handleNewGame={handleNewGame} handleNewOpponent={handleNewOpponent} />
                 <Logs logs={logs} />
             </div>

@@ -2,7 +2,7 @@ import './index.css';
 
 const Attack = ({ handlePokeAttack, leftTurn }: any) => {
     return (
-        <div className="col-2 margin-top-250">
+        <div className="col-2 margin-top-250 battle-button">
             <div className="arrow">
                 {leftTurn && (
                     <svg className="point" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
